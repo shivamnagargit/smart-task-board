@@ -68,3 +68,6 @@ Thanks for checking out my project! If you have any feedback or questions, I'd l
 3. Upload that real screenshot to replace the placeholder link at the top (using the GitHub Issues trick we talked about earlier).
 
 How does this version feel? It's friendly, highly readable, but still packs a massive technical punch!
+
+"IMPORTANT NOTE"
+before doing this all you must change the ip address to your public ip adddress in a file named frontend/src/app look for a line saying  WARNING: Put your actual EC2 Public IP address here! 
