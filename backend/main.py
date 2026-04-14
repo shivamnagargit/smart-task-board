@@ -1,11 +1,12 @@
 from fastapi import FastAPI, Depends
+from fastapi.middleware.cors import CORSMiddleware # 1. ADD THIS LINE
 from sqlalchemy import create_engine, Column, Integer, String, Text
 from sqlalchemy.orm import sessionmaker, Session, declarative_base
 from pydantic import BaseModel
 
 # 1. CONNECT TO THE PANTRY (Database Connection)
 # We are telling Python where to find the Docker database we made yesterday.
-DATABASE_URL = "postgresql://admin:secretpassword@localhost:5432/taskboard"
+DATABASE_URL = "postgresql://admin:secretpassword@database:5432/taskboard"
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
@@ -26,6 +27,13 @@ class TaskCreate(BaseModel):
 # 4. TURN ON THE KITCHEN (Start FastAPI)
 app = FastAPI(title="Smart Task Board API")
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # The "*" means "allow any waiter to pick up food"
+    allow_credentials=True,
+    allow_methods=["*"], # Allow all actions (Create, Read, Update, Delete)
+    allow_headers=["*"],
+)
 # Helper function to open and close the pantry door
 def get_db():
     db = SessionLocal()

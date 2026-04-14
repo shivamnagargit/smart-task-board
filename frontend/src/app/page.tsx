@@ -13,7 +13,7 @@ export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
   
   // WARNING: Put your actual EC2 Public IP address here!
-  const BACKEND_URL = "http://3.236.103.177:8000/tasks/";
+  const BACKEND_URL = "http://3.229.137.67:8000/tasks/";
 
   // This function fetches the data from the Kitchen
   useEffect(() => {
